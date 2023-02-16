@@ -1,0 +1,26 @@
+<h2>Vorhandene Todos</h2>
+<table>
+  <thead>
+    <th>TodoID</th>
+    <th>Title</th>
+    <th>Content</th>
+  </thead>
+  <ng-container *ngIf="todoList | async as list">
+    <tbody *ngFor="let todo of list">
+      <td>{{todo.id}}</td>
+      <td>{{todo.title}}</td>
+      <td>{{todo.content}}</td>
+      <button mat-icon-button class="deleteBtn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </tbody>
+
+  </ng-container>
+</table>
+
+<button
+  color="primary"
+  (click)="openAddDialog()"
+>
+  <mat-icon>add</mat-icon>
+</button>
