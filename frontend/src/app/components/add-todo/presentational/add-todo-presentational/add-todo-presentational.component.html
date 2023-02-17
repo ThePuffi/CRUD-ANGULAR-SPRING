@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Create Todo</h1>
+<mat-dialog-content>
+  <mat-card>
+    <form [formGroup]="todo_form">
+      <mat-card-content>
+        <div class="form-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Title</mat-label>
+            <input type="text" matInput formControlName="title" placeholder="Title"/>
+          </mat-form-field><br>
+          <mat-form-field appearance="fill">
+            <mat-label>Content</mat-label>
+            <input type="text" matInput formControlName="content" placeholder="Content" />
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+  
+      <div class="button-container">
+        <mat-card-actions>
+          <button mat-flat-button type="submit" (click)="submit()" mat-dialog-close>
+            Create
+          </button>
+          <button mat-button mat-dialog-close>Close</button>
+        </mat-card-actions>
+      </div>
+    </form>
+  </mat-card>
+</mat-dialog-content>
+

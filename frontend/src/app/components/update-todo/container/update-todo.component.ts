@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './update-todo.component.html',
   styleUrls: ['./update-todo.component.scss']
 })
-export class UpdateTodoComponent implements OnInit {
+export class UpdateTodoComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
