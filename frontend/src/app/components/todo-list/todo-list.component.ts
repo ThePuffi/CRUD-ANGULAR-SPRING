@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, combineLatest, concat, forkJoin, map, merge, Observable, Subject, tap, toArray, withLatestFrom, zip } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap, } from 'rxjs';
 import { Todo } from 'src/app/models/todo';
 import { TodoService } from 'src/app/services/todo.service';
 import { AddTodoComponent } from '../add-todo/container/add-todo.component';
-import { AddTodoPresentationalComponent } from '../add-todo/presentational/add-todo-presentational/add-todo-presentational.component';
 
 @Component({
   selector: 'app-todo-list',
@@ -12,18 +11,14 @@ import { AddTodoPresentationalComponent } from '../add-todo/presentational/add-t
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent {
-  dialogData!: Observable<Todo>;
   public todoList: Observable<Todo[]>;
   constructor(private http: TodoService, public dialog: MatDialog) {
-    this.todoList = this.http.getAll();
+    this.todoList = TodoService.refresh$.pipe(switchMap(_ => this.http.getAll()));
   }
 
   openAddDialog() {
-    
-    let dialogRef = this.dialog.open(AddTodoComponent);
-    this.dialogData = dialogRef.afterClosed();
-
-    }
+    this.dialog.open(AddTodoComponent);
+  }
   
   //bei neuem Objekt wird nicht die gesamte Liste neugerendert, sondern nur das Objekt
   trackByTodoTitle(index: number, todo: Todo): string {

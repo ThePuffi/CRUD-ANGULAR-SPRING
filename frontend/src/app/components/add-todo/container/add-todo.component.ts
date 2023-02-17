@@ -24,6 +24,7 @@ export class AddTodoComponent {
     return lastValueFrom(service).then(
       () => {
         this.todo_form.reset();
+        TodoService.refresh$.next(false);
       }
     )
 

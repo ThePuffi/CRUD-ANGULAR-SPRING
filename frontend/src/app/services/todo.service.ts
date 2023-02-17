@@ -14,6 +14,7 @@ export class TodoService {
   constructor(private http: HttpClient) {
   }
 
+  static refresh$ = new BehaviorSubject<boolean>(true);
   
   getAll(): Observable<Todo[]> {
     return this.http.get<Todo[]>(baseUrl + 'getAll');
