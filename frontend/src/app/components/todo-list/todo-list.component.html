@@ -10,7 +10,7 @@
       <td>{{todo.id}}</td>
       <td>{{todo.title}}</td>
       <td>{{todo.content}}</td>
-      <button mat-icon-button class="updateBtn" (click)="update(todo)">
+      <button mat-icon-button class="updateBtn" (click)="openUpdateDialog(todo)">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button class="deleteBtn" (click)="delete(todo)">

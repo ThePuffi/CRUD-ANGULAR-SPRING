@@ -21,7 +21,7 @@ export class TodoListComponent {
     this.dialog.open(AddTodoComponent);
   }
 
-  update(todo: Todo) {
+  openUpdateDialog(todo: Todo) {
     this.dialog.open(UpdateTodoComponent, {
       data: todo,
     })
