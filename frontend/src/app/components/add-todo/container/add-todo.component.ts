@@ -5,7 +5,7 @@ import { TodoService } from 'src/app/services/todo.service';
 @Component({
   selector: 'app-add-todo',
   templateUrl: './add-todo.component.html',
-  styleUrls: ['./add-todo.component.scss']
+  styleUrls: []
 })
 export class AddTodoComponent {
 
@@ -16,7 +16,6 @@ export class AddTodoComponent {
       title: null,
       content: null
     })
-
    }
 
   async addTodo() {
@@ -27,7 +26,6 @@ export class AddTodoComponent {
         TodoService.refresh$.next(false);
       }
     )
-
   }
 }
 

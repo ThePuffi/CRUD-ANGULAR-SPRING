@@ -5,7 +5,7 @@ import { Todo } from 'src/app/models/todo';
 @Component({
   selector: 'app-add-todo-presentational',
   templateUrl: './add-todo-presentational.component.html',
-  styleUrls: ['./add-todo-presentational.component.scss']
+  styleUrls: []
 })
 export class AddTodoPresentationalComponent {
 

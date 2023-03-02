@@ -5,20 +5,20 @@ import { Todo } from 'src/app/models/todo';
 @Component({
   selector: 'app-update-todo-presentational',
   templateUrl: './update-todo-presentational.component.html',
-  styleUrls: ['./update-todo-presentational.component.scss']
+  styleUrls: []
 })
 export class UpdateTodoPresentationalComponent {
 
   @Input()
-  set add_todo_form(data: FormGroup){
-    this.todo_form = data
+  set update_todo_form(data: FormGroup){
+    this.todoform = data
   }
-  todo_form = this.add_todo_form;
+  todoform = this.update_todo_form;
 
-  @Output() newTodo = new EventEmitter<Todo>();
+  @Output() updatedTodo = new EventEmitter<Todo>();
 
   submit(){
-    this.newTodo.emit(this.todo_form.value);
+    this.updatedTodo.emit(this.todoform.value);
   }
 
 }
