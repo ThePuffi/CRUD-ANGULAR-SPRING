@@ -1,0 +1,27 @@
+services:
+  postgresqldb:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: test
+    restart: unless-stopped
+
+  frontend:
+    container_name: frontend
+    image: frontend:latest
+    ports:
+      - "4200:4200"
+
+  backend:
+    container_name: backend
+    image: backend:latest
+    ports: 
+      - '8080:8080'
+    depends_on:
+      - postgresqldb
+    restart: unless-stopped
+
