@@ -1,34 +1,39 @@
 apiVersion: apps/v1
-kind: Deployement
+kind: Deployment
 metadata:
   name: frontend-deployment
+  labels:
+    type: myType
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: angular
-  replicas: 5
+      name: frontend-pod
   template:
     metadata:
-      labels: 
-        app: angular
+      labels:
+        name: frontend-pod
     spec:
       containers:
-      - name: angular
-        image: frontend 
-        port:
+      - name: frontend-pod
+        image: erik/frontend
+        imagePullPolicy: Never
+        ports:
         - containerPort: 4200
+          protocol: TCP
+          
 ---
 
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: angular-service
+  name: frontend-service
+  namespace: default
 spec:
-  selector:
-    app: angular
+  type: NodePort
   ports:
-  - protocol: TCP
+  - nodePort: 30090
     port: 4200
     targetPort: 4200
-    nodePort: 31000
-  type: NodePort
+  selector:
+    name: frontend-pod
