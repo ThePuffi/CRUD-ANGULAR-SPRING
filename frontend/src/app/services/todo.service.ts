@@ -34,8 +34,6 @@ export class TodoService {
   }
 
   multipleDelete(todos: MultiTodo): Observable<MultiTodo> {
-    console.log("SERVICE", todos);
-    
     return this.http.post<MultiTodo>(`${baseUrl}multiDelete`, todos);
   }
 }

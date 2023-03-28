@@ -48,7 +48,6 @@ export class TodoListComponent {
   }
 
   deleteMultipleItems() {
-    console.log('DeleteMultiple', this.selectedItems);
     this.http.multipleDelete(this.selectedItems).subscribe((res) => {
       TodoService.refresh$.next(false);
     });
