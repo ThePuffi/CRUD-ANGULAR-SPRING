@@ -1,29 +1,37 @@
 <h2>Vorhandene Todos</h2>
 <table>
   <thead>
+    <th></th>
     <th>TodoID</th>
     <th>Title</th>
     <th>Content</th>
   </thead>
   <ng-container *ngIf="todoList | async as list">
     <tbody *ngFor="let todo of list">
-      <td>{{todo.id}}</td>
-      <td>{{todo.title}}</td>
-      <td>{{todo.content}}</td>
-      <button mat-icon-button class="updateBtn" (click)="openUpdateDialog(todo)">
+      <mat-checkbox
+        (change)="selectItems(todo)"
+        [checked]="selectedItems.todoList.includes(todo)"
+        class="example-margin"
+      ></mat-checkbox>
+      <td>{{ todo.id }}</td>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.content }}</td>
+      <button
+        mat-icon-button
+        class="updateBtn"
+        (click)="openUpdateDialog(todo)"
+      >
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button class="deleteBtn" (click)="delete(todo)">
         <mat-icon>delete</mat-icon>
       </button>
     </tbody>
-
   </ng-container>
 </table>
-
-<button
-  color="primary"
-  (click)="openAddDialog()"
->
+<button color="warn" (click)="deleteMultipleItems()">
+  Ausgewählte Löschen
+</button>
+<button color="primary" (click)="openAddDialog()">
   <mat-icon>add</mat-icon>
 </button>

@@ -1,10 +1,12 @@
 package com.crudangularspring.crudangularspringbackend.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.crudangularspring.crudangularspringbackend.Dto.MultiTodo;
 import com.crudangularspring.crudangularspringbackend.Dto.TodoDto;
 import com.crudangularspring.crudangularspringbackend.Service.TodoService;
 
@@ -59,6 +62,16 @@ public class TodoController {
     public ResponseEntity<TodoDto> delete(@PathVariable String id) {
         try{
             service.deleteTodo(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch(IllegalArgumentException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/multiDelete")
+    public ResponseEntity<MultiTodo> multiDelete(@RequestBody MultiTodo deleteItems) {
+        try{
+            service.multipleDelete(deleteItems);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch(IllegalArgumentException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);

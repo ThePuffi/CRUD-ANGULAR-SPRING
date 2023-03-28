@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
+import { MultiTodo } from '../models/multiTodo';
 import { Todo } from '../models/todo';
 
 const baseUrl = 'http://localhost:8080/';
@@ -30,5 +31,11 @@ export class TodoService {
 
   delete(dataID: string): Observable<Todo> {
     return this.http.delete<Todo>(`${baseUrl}delete/${dataID}`);
+  }
+
+  multipleDelete(todos: MultiTodo): Observable<MultiTodo> {
+    console.log("SERVICE", todos);
+    
+    return this.http.post<MultiTodo>(`${baseUrl}multiDelete`, todos);
   }
 }

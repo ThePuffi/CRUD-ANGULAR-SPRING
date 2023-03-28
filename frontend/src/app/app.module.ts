@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddTodoPresentationalComponent } from "./components/add-todo/presentational/add-todo-presentational/add-todo-presentational.component";
 import { MatInputModule } from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { UpdateTodoPresentationalComponent } from "./components/update-todo/presentational/update-todo-presentational/update-todo-presentational.component";
 
 @NgModule({
@@ -42,7 +43,8 @@ import { UpdateTodoPresentationalComponent } from "./components/update-todo/pres
         MatDialogModule,
         FormsModule,
         ReactiveFormsModule,
-        MatInputModule
+        MatInputModule,
+        MatCheckboxModule
         
     ]
 })

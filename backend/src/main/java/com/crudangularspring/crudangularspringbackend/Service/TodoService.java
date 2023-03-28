@@ -3,6 +3,7 @@ package com.crudangularspring.crudangularspringbackend.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.crudangularspring.crudangularspringbackend.Dto.MultiTodo;
 import com.crudangularspring.crudangularspringbackend.Dto.TodoDto;
 import com.crudangularspring.crudangularspringbackend.Entity.TodoEntity;
 import com.crudangularspring.crudangularspringbackend.Repository.TodoRepository;
@@ -52,5 +53,16 @@ public class TodoService {
         } else {
             throw new IllegalArgumentException("Todo does not exist!");
         }
+    }
+    public void multipleDelete(MultiTodo itemList) {
+        for (TodoDto item : itemList.getTodoList()
+             ) {
+            if(repository.existsById(item.getId())) {
+                repository.deleteById(item.getId());
+            } else {
+                throw new IllegalArgumentException("Todo does not exist!");
+            }
+        }
+
     }
 }
