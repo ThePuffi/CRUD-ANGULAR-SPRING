@@ -47,14 +47,10 @@ export class TodoListComponent {
     }
   }
 
-  deleteMultipleItems() {
-    this.http.multipleDelete(this.selectedItems).subscribe((res) => {
+  async deleteMultipleItems() {
+    const service = this.http.multipleDelete(this.selectedItems);
+    return lastValueFrom(service).then(() => {
       TodoService.refresh$.next(false);
     });
-  }
-
-  //bei neuem Objekt wird nicht die gesamte Liste neugerendert, sondern nur das Objekt
-  trackByTodoTitle(index: number, todo: Todo): string {
-    return todo.title && todo.content;
   }
 }
